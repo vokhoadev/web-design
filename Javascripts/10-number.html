@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Thao Tác với Number trong JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            min-height: 200px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>Demo Thao Tác với Number trong JavaScript</h1>
+    <p>Thực hiện các thao tác với kiểu dữ liệu Number.</p>
+    <p>Kết quả cũng được hiển thị trong Console (Nhấn F12 để mở Developer Tools).</p>
+    <div id="output"></div>
+
+    <script>
+        // Hàm hiển thị kết quả trên trang và Console
+        function displayResult(message) {
+            console.log(message);
+            document.getElementById("output").innerText += message + "\n";
+        }
+
+        // 1. Các phép toán số học cơ bản
+        displayResult("=== Phép toán số học ===");
+        let a = 10;
+        let b = 3;
+        displayResult(`Cộng: ${a} + ${b} = ${a + b}`); // 13
+        displayResult(`Trừ: ${a} - ${b} = ${a - b}`); // 7
+        displayResult(`Nhân: ${a} * ${b} = ${a * b}`); // 30
+        displayResult(`Chia: ${a} / ${b} = ${a / b}`); // 3.333...
+        displayResult(`Chia lấy nguyên: ${a} % ${b} = ${a % b}`); // 1
+        displayResult(`Lũy thừa: ${a} ** 2 = ${a ** 2}`); // 100
+
+        // 2. Sử dụng các hàm Math
+        displayResult("\n=== Các hàm Math ===");
+        displayResult(`Giá trị tuyệt đối Math.abs(-5): ${Math.abs(-5)}`); // 5
+        displayResult(`Căn bậc hai Math.sqrt(16): ${Math.sqrt(16)}`); // 4
+        displayResult(`Làm tròn lên Math.ceil(4.2): ${Math.ceil(4.2)}`); // 5
+        displayResult(`Làm tròn xuống Math.floor(4.7): ${Math.floor(4.7)}`); // 4
+        displayResult(`Làm tròn gần nhất Math.round(4.5): ${Math.round(4.5)}`); // 5
+        displayResult(`Số ngẫu nhiên Math.random(): ${Math.random()}`); // Số ngẫu nhiên 0 đến <1
+        displayResult(`Số ngẫu nhiên từ 1-10: ${Math.floor(Math.random() * 10) + 1}`);
+
+        // 3. Chuyển đổi chuỗi thành số
+        displayResult("\n=== Chuyển đổi chuỗi thành số ===");
+        let strNum = "123.45";
+        displayResult(`Chuỗi "${strNum}" -> Number (parseFloat): ${parseFloat(strNum)}`);
+        displayResult(`Chuỗi "${strNum}" -> Number (parseInt): ${parseInt(strNum)}`);
+        displayResult(`Chuỗi "abc" -> Number (parseFloat): ${parseFloat("abc")}`); // NaN
+        displayResult(`Chuỗi "123abc" -> Number (parseInt): ${parseInt("123abc")}`); // 123
+
+        // 4. Kiểm tra kiểu số
+        displayResult("\n=== Kiểm tra kiểu số ===");
+        let num = 42;
+        let notANum = NaN;
+        displayResult(`Kiểm tra ${num} là số: ${!isNaN(num) && typeof num === "number"}`);
+        displayResult(`Kiểm tra ${notANum} là NaN: ${isNaN(notANum)}`);
+        displayResult(`Kiểm tra 123.45 là số hữu hạn: ${isFinite(123.45)}`);
+        displayResult(`Kiểm tra Infinity là hữu hạn: ${isFinite(Infinity)}`);
+
+        // 5. Xử lý các trường hợp đặc biệt
+        displayResult("\n=== Trường hợp đặc biệt ===");
+        displayResult(`Chia cho 0: ${10 / 0}`); // Infinity
+        displayResult(`Chia 0 cho 0: ${0 / 0}`); // NaN
+        displayResult(`Số lớn nhất: ${Number.MAX_VALUE}`);
+        displayResult(`Số nhỏ nhất: ${Number.MIN_VALUE}`);
+    </script>
+</body>
+</html>

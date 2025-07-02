@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Date trong JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            min-height: 300px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>Demo Date trong JavaScript</h1>
+    <p>Thực hiện các thao tác với đối tượng Date.</p>
+    <p>Kết quả cũng được hiển thị trong Console (Nhấn F12 để mở Developer Tools).</p>
+    <div id="output"></div>
+
+    <script>
+        // Hàm hiển thị kết quả trên trang và Console
+        function displayResult(message) {
+            console.log(message);
+            document.getElementById("output").innerText += message + "\n";
+        }
+
+        // 1. Tạo đối tượng Date
+        displayResult("=== Tạo đối tượng Date ===");
+        let now = new Date(); // Ngày giờ hiện tại
+        displayResult(`Ngày giờ hiện tại: ${now}`);
+        let specificDate = new Date("2025-07-02T13:32:00"); // Ngày cụ thể
+        displayResult(`Ngày cụ thể (2025-07-02 13:32:00): ${specificDate}`);
+        let dateFromNumbers = new Date(2025, 6, 2, 13, 32, 0); // Năm, tháng (0-11), ngày, giờ, phút, giây
+        displayResult(`Ngày từ số (2025-07-02 13:32:00): ${dateFromNumbers}`);
+
+        // 2. Truy xuất thông tin từ Date
+        displayResult("\n=== Truy xuất thông tin từ Date ===");
+        displayResult(`Năm: ${now.getFullYear()}`);
+        displayResult(`Tháng (0-11): ${now.getMonth()}`); // Tháng bắt đầu từ 0
+        displayResult(`Ngày trong tháng: ${now.getDate()}`);
+        displayResult(`Ngày trong tuần (0-6, 0 là Chủ Nhật): ${now.getDay()}`);
+        displayResult(`Giờ: ${now.getHours()}`);
+        displayResult(`Phút: ${now.getMinutes()}`);
+        displayResult(`Giây: ${now.getSeconds()}`);
+        displayResult(`Timestamp (milliseconds từ 01/01/1970): ${now.getTime()}`);
+
+        // 3. Thiết lập giá trị cho Date
+        displayResult("\n=== Thiết lập giá trị cho Date ===");
+        let modifiedDate = new Date();
+        modifiedDate.setFullYear(2026);
+        modifiedDate.setMonth(5); // Tháng 6 (0-11)
+        modifiedDate.setDate(15);
+        displayResult(`Sau khi thiết lập (2026-06-15): ${modifiedDate}`);
+
+        // 4. Định dạng ngày giờ
+        displayResult("\n=== Định dạng ngày giờ ===");
+        displayResult(`toLocaleString (định dạng địa phương): ${now.toLocaleString("vi-VN")}`);
+        displayResult(`toLocaleDateString (chỉ ngày): ${now.toLocaleDateString("vi-VN")}`);
+        displayResult(`toLocaleTimeString (chỉ giờ): ${now.toLocaleTimeString("vi-VN")}`);
+        displayResult(`toISOString (định dạng ISO): ${now.toISOString()}`);
+
+        // 5. Tính toán với Date
+        displayResult("\n=== Tính toán với Date ===");
+        let futureDate = new Date(now);
+        futureDate.setDate(now.getDate() + 7); // Cộng 7 ngày
+        displayResult(`Ngày sau 7 ngày: ${futureDate.toLocaleDateString("vi-VN")}`);
+        let timeDiff = futureDate - now; // Khoảng cách thời gian (milliseconds)
+        displayResult(`Khoảng cách (ngày): ${timeDiff / (1000 * 60 * 60 * 24)}`);
+
+        // 6. Xử lý các trường hợp đặc biệt
+        displayResult("\n=== Trường hợp đặc biệt ===");
+        let invalidDate = new Date("invalid");
+        displayResult(`Ngày không hợp lệ: ${invalidDate}`); // Invalid Date
+        displayResult(`Kiểm tra ngày hợp lệ: ${isNaN(invalidDate)}`); // true
+    </script>
+</body>
+</html>

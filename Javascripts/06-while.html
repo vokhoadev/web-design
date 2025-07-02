@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo While trong JavaScript</title>
+</head>
+<body>
+    <h1>Demo Vòng lặp While trong JavaScript</h1>
+    <p>In các số từ 1 đến 10 và tính tổng.</p>
+    <p>Kết quả cũng được hiển thị trong Console (Nhấn F12 để mở Developer Tools).</p>
+    <div id="result"></div>
+
+    <script>
+        // Khai báo biến
+        let i = 1;
+        let sum = 0;
+        let output = "Các số: ";
+
+        // Sử dụng vòng lặp while
+        while (i <= 10) {
+            output += i + " "; // Thêm số vào chuỗi kết quả
+            sum += i;          // Cộng số vào tổng
+            i++;               // Tăng i lên 1
+        }
+
+        // In kết quả ra Console
+        console.log(output);
+        console.log("Tổng các số:", sum);
+
+        // Hiển thị kết quả trên trang web
+        document.getElementById("result").innerText = `${output}\nTổng các số: ${sum}`;
+    </script>
+</body>
+</html>

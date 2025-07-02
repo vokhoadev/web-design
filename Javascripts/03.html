@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo các hàm Math trong JavaScript</title>
+</head>
+<body>
+    <h1>Demo các hàm Math trong JavaScript</h1>
+    <p>Kết quả sẽ hiển thị trong Console (Nhấn F12 để mở Developer Tools)</p>
+
+    <script>
+        // 1. Math.abs() - Trả về giá trị tuyệt đối
+        console.log("Math.abs(-10):", Math.abs(-10)); // 10
+
+        // 2. Math.sqrt() - Trả về căn bậc hai
+        console.log("Math.sqrt(16):", Math.sqrt(16)); // 4
+
+        // 3. Math.max() - Trả về giá trị lớn nhất trong danh sách
+        console.log("Math.max(5, 10, -2, 8):", Math.max(5, 10, -2, 8)); // 10
+
+        // 4. Math.min() - Trả về giá trị nhỏ nhất trong danh sách
+        console.log("Math.min(5, 10, -2, 8):", Math.min(5, 10, -2, 8)); // -2
+
+        // 5. Math.ceil() - Làm tròn lên số nguyên gần nhất
+        console.log("Math.ceil(4.2):", Math.ceil(4.2)); // 5
+
+        // 6. Math.floor() - Làm tròn xuống số nguyên gần nhất
+        console.log("Math.floor(4.7):", Math.floor(4.7)); // 4
+
+        // 7. Math.round() - Làm tròn đến số nguyên gần nhất
+        console.log("Math.round(4.5):", Math.round(4.5)); // 5
+        console.log("Math.round(4.4):", Math.round(4.4)); // 4
+
+        // 8. Math.pow() - Tính lũy thừa (số mũ)
+        console.log("Math.pow(2, 3):", Math.pow(2, 3)); // 8 (2^3)
+
+        // 9. Math.exp() - Tính e mũ x
+        console.log("Math.exp(1):", Math.exp(1)); // ~2.718 (e^1)
+
+        // 10. Math.log() - Tính logarit tự nhiên (ln)
+        console.log("Math.log(Math.E):", Math.log(Math.E)); // 1
+
+        // 11. Math.random() - Trả về số ngẫu nhiên từ 0 (bao gồm) đến 1 (không bao gồm)
+        console.log("Math.random():", Math.random()); // Số ngẫu nhiên, ví dụ: 0.123...
+
+        // Ví dụ bổ sung: Tạo số ngẫu nhiên nguyên trong khoảng [1, 10]
+        console.log("Số ngẫu nhiên từ 1 đến 10:", Math.floor(Math.random() * 10) + 1);
+    </script>
+</body>
+</html>

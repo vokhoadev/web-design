@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Xử Lý Sự Kiện trong JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        button, input {
+            margin: 10px 0;
+            padding: 8px;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            min-height: 100px;
+        }
+        #hoverArea {
+            width: 200px;
+            height: 100px;
+            background-color: #f0f0f0;
+            text-align: center;
+            line-height: 100px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Demo Xử Lý Sự Kiện trong JavaScript</h1>
+    <p>Thử các sự kiện khác nhau và xem kết quả trong Console (Nhấn F12) hoặc trên trang.</p>
+
+    <!-- 1. Sự kiện click với thuộc tính HTML -->
+    <button onclick="handleClick()">Nhấn nút (Sự kiện HTML)</button>
+
+    <!-- 2. Sự kiện click với addEventListener -->
+    <button id="clickBtn">Nhấn nút (addEventListener)</button>
+
+    <!-- 3. Sự kiện mouseover và mouseout -->
+    <div id="hoverArea">Di chuột vào đây</div>
+
+    <!-- 4. Sự kiện keydown và input -->
+    <input type="text" id="textInput" placeholder="Nhập văn bản...">
+
+    <!-- 5. Sự kiện submit form -->
+    <form id="myForm">
+        <input type="text" id="nameInput" placeholder="Nhập tên của bạn">
+        <button type="submit">Gửi</button>
+    </form>
+
+    <!-- Khu vực hiển thị kết quả -->
+    <div id="output">Kết quả sẽ hiển thị ở đây.</div>
+
+    <script>
+        // Hàm hiển thị kết quả trên trang và Console
+        function displayResult(message) {
+            console.log(message);
+            document.getElementById("output").innerText += message + "\n";
+        }
+
+        // 1. Hàm xử lý sự kiện click (gán qua thuộc tính HTML)
+        function handleClick() {
+            displayResult("Nút được nhấn (sự kiện HTML)!");
+        }
+
+        // 2. Xử lý sự kiện click với addEventListener
+        document.getElementById("clickBtn").addEventListener("click", function() {
+            displayResult("Nút được nhấn (addEventListener)!");
+        });
+
+        // 3. Xử lý sự kiện mouseover và mouseout
+        const hoverArea = document.getElementById("hoverArea");
+        hoverArea.addEventListener("mouseover", function() {
+            hoverArea.style.backgroundColor = "#a0e7a0";
+            displayResult("Chuột di vào khu vực!");
+        });
+        hoverArea.addEventListener("mouseout", function() {
+            hoverArea.style.backgroundColor = "#f0f0f0";
+            displayResult("Chuột rời khỏi khu vực!");
+        });
+
+        // 4. Xử lý sự kiện keydown và input
+        const textInput = document.getElementById("textInput");
+        textInput.addEventListener("keydown", function(event) {
+            displayResult(`Phím nhấn: ${event.key}`);
+        });
+        textInput.addEventListener("input", function(event) {
+            displayResult(`Nội dung nhập: ${event.target.value}`);
+        });
+
+        // 5. Xử lý sự kiện submit form
+        document.getElementById("myForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Ngăn hành vi mặc định của form
+            const name = document.getElementById("nameInput").value;
+            displayResult(`Form được gửi với tên: ${name}`);
+            document.getElementById("myForm").reset(); // Xóa form sau khi gửi
+        });
+    </script>
+</body>
+</html>

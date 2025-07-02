@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo các phép toán trong JavaScript</title>
+</head>
+<body>
+    <h1>Demo các phép toán trong JavaScript</h1>
+    <p>Kết quả sẽ hiển thị trong Console (Nhấn F12 để mở Developer Tools)</p>
+
+    <script>
+        // Khai báo biến
+        let a = 10;
+        let b = 3;
+
+        // 1. Phép toán số học
+        console.log("=== Phép toán số học ===");
+        console.log("Cộng (+):", a + b);      // 13
+        console.log("Trừ (-):", a - b);      // 7
+        console.log("Nhân (*):", a * b);     // 30
+        console.log("Chia (/):", a / b);     // 3.333...
+        console.log("Chia lấy nguyên (%):", a % b); // 1
+        console.log("Tăng (++):", ++a);      // 11 (a tăng lên 11)
+        console.log("Giảm (--):", --b);      // 2 (b giảm xuống 2)
+
+        // 2. Phép gán
+        console.log("\n=== Phép gán ===");
+        let x = 5;
+        console.log("Gán (=):", x);          // 5
+        x += 2;  // x = x + 2
+        console.log("Cộng gán (+=):", x);    // 7
+        x -= 3;  // x = x - 3
+        console.log("Trừ gán (-=):", x);     // 4
+        x *= 2;  // x = x * 2
+        console.log("Nhân gán (*=):", x);    // 8
+        x /= 4;  // x = x / 4
+        console.log("Chia gán (/=):", x);    // 2
+        x %= 3;  // x = x % 3
+        console.log("Chia lấy nguyên gán (%=):", x); // 2
+
+        // 3. Phép luận lý
+        console.log("\n=== Phép luận lý ===");
+        let bool1 = true;
+        let bool2 = false;
+        console.log("AND (&&):", bool1 && bool2); // false
+        console.log("OR (||):", bool1 || bool2);  // true
+        console.log("NOT (!):", !bool1);          // false
+
+        // 4. Phép so sánh
+        console.log("\n=== Phép so sánh ===");
+        let num1 = 10;
+        let num2 = "10";
+        console.log("Bằng (==):", num1 == num2);    // true (so sánh giá trị)
+        console.log("Khác (!=):", num1 != num2);    // false
+        console.log("Bằng nghiêm ngặt (===):", num1 === num2); // false (so sánh cả giá trị và kiểu)
+        console.log("Khác nghiêm ngặt (!==):", num1 !== num2); // true
+        console.log("Lớn hơn (>):", num1 > 5);      // true
+        console.log("Lớn hơn hoặc bằng (>=):", num1 >= 10); // true
+        console.log("Nhỏ hơn (<):", num1 < 15);     // true
+        console.log("Nhỏ hơn hoặc bằng (<=):", num1 <= 10); // true
+    </script>
+</body>
+</html>

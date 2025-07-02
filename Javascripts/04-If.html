@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo If-Else trong JavaScript</title>
+</head>
+<body>
+    <h1>Demo If-Else trong JavaScript</h1>
+    <p>Kiểm tra số điểm và hiển thị kết quả xếp loại.</p>
+    <p>Kết quả cũng được hiển thị trong Console (Nhấn F12 để mở Developer Tools).</p>
+    <div id="result"></div>
+
+    <script>
+        // Khai báo biến điểm
+        let score = 85;
+
+        // Sử dụng if, else if, else để xếp loại
+        let result;
+        if (score >= 90) {
+            result = "Xuất sắc";
+        } else if (score >= 80) {
+            result = "Giỏi";
+        } else if (score >= 70) {
+            result = "Khá";
+        } else if (score >= 50) {
+            result = "Trung bình";
+        } else {
+            result = "Không đạt";
+        }
+
+        // In kết quả ra Console
+        console.log("Điểm:", score);
+        console.log("Xếp loại:", result);
+
+        // Hiển thị kết quả trên trang web
+        document.getElementById("result").innerText = `Điểm: ${score} - Xếp loại: ${result}`;
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Hàm trong JavaScript</title>
+</head>
+<body>
+    <h1>Demo Hàm trong JavaScript</h1>
+    <p>Kiểm tra các loại hàm khác nhau.</p>
+    <p>Kết quả cũng được hiển thị trong Console (Nhấn F12 để mở Developer Tools).</p>
+    <div id="result"></div>
+
+    <script>
+        // 1. Hàm không có tham số
+        function sayHello() {
+            return "Xin chào!";
+        }
+
+        // 2. Hàm có tham số
+        function addNumbers(a, b) {
+            return a + b;
+        }
+
+        // 3. Hàm có tham số mặc định
+        function greet(name = "Khách") {
+            return `Chào ${name}!`;
+        }
+
+        // 4. Hàm biểu thức (Function Expression)
+        const multiply = function(x, y) {
+            return x * y;
+        };
+
+        // 5. Hàm mũi tên (Arrow Function)
+        const square = (num) => num * num;
+
+        // 6. Hàm gọi các hàm khác và xử lý logic
+        function processNumber(num) {
+            let result = "";
+            if (num > 0) {
+                result = `Số ${num} là số dương. Bình phương: ${square(num)}`;
+            } else if (num < 0) {
+                result = `Số ${num} là số âm. Giá trị tuyệt đối: ${Math.abs(num)}`;
+            } else {
+                result = "Số 0 không được xử lý đặc biệt.";
+            }
+            return result;
+        }
+
+        // Thực thi các hàm và lưu kết quả
+        let output = "";
+        output += `1. Hàm không tham số: ${sayHello()}\n`;
+        output += `2. Hàm có tham số (5 + 3): ${addNumbers(5, 3)}\n`;
+        output += `3. Hàm tham số mặc định: ${greet()}\n`;
+        output += `3. Hàm tham số mặc định (có tên): ${greet("Grok")}\n`;
+        output += `4. Hàm biểu thức (4 * 5): ${multiply(4, 5)}\n`;
+        output += `5. Hàm mũi tên (bình phương 6): ${square(6)}\n`;
+        output += `6. Hàm xử lý số (num = 4): ${processNumber(4)}\n`;
+        output += `6. Hàm xử lý số (num = -2): ${processNumber(-2)}\n`;
+        output += `6. Hàm xử lý số (num = 0): ${processNumber(0)}`;
+
+        // In kết quả ra Console
+        console.log("1. Hàm không tham số:", sayHello());
+        console.log("2. Hàm có tham số (5 + 3):", addNumbers(5, 3));
+        console.log("3. Hàm tham số mặc định:", greet());
+        console.log("3. Hàm tham số mặc định (có tên):", greet("Grok"));
+        console.log("4. Hàm biểu thức (4 * 5):", multiply(4, 5));
+        console.log("5. Hàm mũi tên (bình phương 6):", square(6));
+        console.log("6. Hàm xử lý số (num = 4):", processNumber(4));
+        console.log("6. Hàm xử lý số (num = -2):", processNumber(-2));
+        console.log("6. Hàm xử lý số (num = 0):", processNumber(0));
+
+        // Hiển thị kết quả trên trang web
+        document.getElementById("result").innerText = output;
+    </script>
+</body>
+</html>

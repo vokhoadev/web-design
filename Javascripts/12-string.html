@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Chuỗi và Phương Thức Thao Tác Chuỗi trong JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            min-height: 300px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>Demo Chuỗi và Phương Thức Thao Tác Chuỗi trong JavaScript</h1>
+    <p>Thực hiện các thao tác với chuỗi và các phương thức phổ biến.</p>
+    <p>Kết quả cũng được hiển thị trong Console (Nhấn F12 để mở Developer Tools).</p>
+    <div id="output"></div>
+
+    <script>
+        // Hàm hiển thị kết quả trên trang và Console
+        function displayResult(message) {
+            console.log(message);
+            document.getElementById("output").innerText += message + "\n";
+        }
+
+        // 1. Tạo và truy cập chuỗi
+        displayResult("=== Tạo và truy cập chuỗi ===");
+        let str = "Xin chào, JavaScript!";
+        displayResult(`Chuỗi ban đầu: ${str}`);
+        displayResult(`Độ dài chuỗi: ${str.length}`); // 20
+        displayResult(`Ký tự tại vị trí 0: ${str.charAt(0)}`); // X
+        displayResult(`Ký tự tại vị trí 5 (dùng []): ${str[5]}`); // à
+
+        // 2. Chuyển đổi in hoa, in thường
+        displayResult("\n=== Chuyển đổi in hoa, in thường ===");
+        displayResult(`In hoa: ${str.toUpperCase()}`); // XIN CHÀO, JAVASCRIPT!
+        displayResult(`In thường: ${str.toLowerCase()}`); // xin chào, javascript!
+
+        // 3. Xóa khoảng trắng
+        displayResult("\n=== Xóa khoảng trắng ===");
+        let strWithSpaces = "   Hello World!   ";
+        displayResult(`Chuỗi có khoảng trắng: "${strWithSpaces}"`);
+        displayResult(`Sau khi trim: "${strWithSpaces.trim()}"`);
+
+        // 4. Cắt chuỗi
+        displayResult("\n=== Cắt chuỗi ===");
+        displayResult(`slice(0, 8): ${str.slice(0, 8)}`); // Xin chào
+        displayResult(`substring(10, 20): ${str.substring(10, 20)}`); // JavaScript
+
+        // 5. Thay thế chuỗi
+        displayResult("\n=== Thay thế chuỗi ===");
+        let newStr = str.replace("JavaScript", "Grok");
+        displayResult(`Thay JavaScript bằng Grok: ${newStr}`); // Xin chào, Grok!
+
+        // 6. Tách chuỗi thành mảng
+        displayResult("\n=== Tách chuỗi thành mảng ===");
+        let words = str.split(", ");
+        displayResult(`Tách theo dấu phẩy: ${words}`); // Xin chào,JavaScript!
+        displayResult(`Phần tử đầu tiên: ${words[0]}`); // Xin chào
+        displayResult(`Phần tử thứ hai: ${words[1]}`); // JavaScript
+
+        // 7. Nối chuỗi
+        displayResult("\n=== Nối chuỗi ===");
+        let str1 = "Hello";
+        let str2 = "World";
+        displayResult(`Nối chuỗi: ${str1.concat(" ", str2, "!")}`); // Hello World!
+
+        // 8. Tìm kiếm trong chuỗi
+        displayResult("\n=== Tìm kiếm trong chuỗi ===");
+        displayResult(`Có chứa "JavaScript"?: ${str.includes("JavaScript")}`); // true
+        displayResult(`Vị trí của "JavaScript": ${str.indexOf("JavaScript")}`); // 10
+        displayResult(`Vị trí của "Python": ${str.indexOf("Python")}`); // -1 (không tìm thấy)
+    </script>
+</body>
+</html>

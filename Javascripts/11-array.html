@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Mảng và Phương Thức Thao Tác Mảng trong JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            min-height: 300px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>Demo Mảng và Phương Thức Thao Tác Mảng trong JavaScript</h1>
+    <p>Thực hiện các thao tác với mảng và các phương thức phổ biến.</p>
+    <p>Kết quả cũng được hiển thị trong Console (Nhấn F12 để mở Developer Tools).</p>
+    <div id="output"></div>
+
+    <script>
+        // Hàm hiển thị kết quả trên trang và Console
+        function displayResult(message) {
+            console.log(message);
+            document.getElementById("output").innerText += message + "\n";
+        }
+
+        // 1. Tạo và truy cập mảng
+        displayResult("=== Tạo và truy cập mảng ===");
+        let fruits = ["Táo", "Chuối", "Cam", "Xoài"];
+        displayResult(`Mảng ban đầu: ${fruits}`);
+        displayResult(`Phần tử đầu tiên: ${fruits[0]}`); // Táo
+        displayResult(`Phần tử cuối cùng: ${fruits[fruits.length - 1]}`); // Xoài
+        displayResult(`Độ dài mảng: ${fruits.length}`); // 4
+
+        // 2. Thêm/xóa phần tử
+        displayResult("\n=== Thêm/xóa phần tử ===");
+        fruits.push("Dưa hấu"); // Thêm vào cuối
+        displayResult(`Sau khi push 'Dưa hấu': ${fruits}`);
+        fruits.pop(); // Xóa phần tử cuối
+        displayResult(`Sau khi pop: ${fruits}`);
+        fruits.unshift("Chanh"); // Thêm vào đầu
+        displayResult(`Sau khi unshift 'Chanh': ${fruits}`);
+        fruits.shift(); // Xóa phần tử đầu
+        displayResult(`Sau khi shift: ${fruits}`);
+
+        // 3. Cắt và thay thế phần tử
+        displayResult("\n=== Cắt và thay thế phần tử ===");
+        let sliced = fruits.slice(1, 3); // Lấy từ chỉ số 1 đến 2
+        displayResult(`slice(1, 3): ${sliced}`); // Chuối, Cam
+        fruits.splice(1, 1, "Dâu tây"); // Xóa 1 phần tử tại chỉ số 1, thêm "Dâu tây"
+        displayResult(`Sau khi splice(1, 1, 'Dâu tây'): ${fruits}`);
+
+        // 4. Duyệt mảng với forEach
+        displayResult("\n=== Duyệt mảng với forEach ===");
+        fruits.forEach((item, index) => {
+            displayResult(`Phần tử ${index}: ${item}`);
+        });
+
+        // 5. Ánh xạ mảng với map
+        displayResult("\n=== Ánh xạ mảng với map ===");
+        let upperFruits = fruits.map(item => item.toUpperCase());
+        displayResult(`Chuyển thành chữ in hoa: ${upperFruits}`);
+
+        // 6. Lọc mảng với filter
+        displayResult("\n=== Lọc mảng với filter ===");
+        let longNames = fruits.filter(item => item.length > 3);
+        displayResult(`Phần tử có độ dài > 3: ${longNames}`);
+
+        // 7. Rút gọn mảng với reduce
+        displayResult("\n=== Rút gọn mảng với reduce ===");
+        let numbers = [1, 2, 3, 4, 5];
+        let sum = numbers.reduce((acc, curr) => acc + curr, 0);
+        displayResult(`Tổng các số [${numbers}]: ${sum}`);
+
+        // 8. Sắp xếp mảng với sort
+        displayResult("\n=== Sắp xếp mảng với sort ===");
+        let unsortedNumbers = [5, 2, 8, 1, 9];
+        displayResult(`Mảng số chưa sắp xếp: ${unsortedNumbers}`);
+        unsortedNumbers.sort((a, b) => a - b); // Sắp xếp tăng dần
+        displayResult(`Mảng số sau khi sắp xếp: ${unsortedNumbers}`);
+    </script>
+</body>
+</html>

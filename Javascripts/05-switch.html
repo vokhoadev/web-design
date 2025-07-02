@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Switch trong JavaScript</title>
+</head>
+<body>
+    <h1>Demo Switch trong JavaScript</h1>
+    <p>Kiểm tra ngày trong tuần và hiển thị thông tin.</p>
+    <p>Kết quả cũng được hiển thị trong Console (Nhấn F12 để mở Developer Tools).</p>
+    <div id="result"></div>
+
+    <script>
+        // Khai báo biến ngày (1-7 tương ứng với Thứ Hai - Chủ Nhật)
+        let day = 3; // Ví dụ: 3 là Thứ Tư
+
+        // Sử dụng switch để kiểm tra ngày
+        let dayName;
+        switch (day) {
+            case 1:
+                dayName = "Thứ Hai";
+                break;
+            case 2:
+                dayName = "Thứ Ba";
+                break;
+            case 3:
+                dayName = "Thứ Tư";
+                break;
+            case 4:
+                dayName = "Thứ Năm";
+                break;
+            case 5:
+                dayName = "Thứ Sáu";
+                break;
+            case 6:
+                dayName = "Thứ Bảy";
+                break;
+            case 7:
+                dayName = "Chủ Nhật";
+                break;
+            default:
+                dayName = "Ngày không hợp lệ";
+                break;
+        }
+
+        // In kết quả ra Console
+        console.log("Ngày:", day);
+        console.log("Tên ngày:", dayName);
+
+        // Hiển thị kết quả trên trang web
+        document.getElementById("result").innerText = `Ngày: ${day} - Tên ngày: ${dayName}`;
+    </script>
+</body>
+</html>

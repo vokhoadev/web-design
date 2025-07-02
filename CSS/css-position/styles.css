@@ -1,0 +1,119 @@
+/* Reset default margins and set base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base body styles */
+body {
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+    padding: 2rem;
+}
+
+/* Container styles */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-height: 1500px; /* Ensure enough height for scrolling */
+}
+
+/* Main heading */
+#main-heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 1.5rem;
+}
+
+/* Box styles */
+.box {
+    background-color: #fff;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    position: relative; /* Default for containers needing positioned children */
+}
+
+/* Static position */
+.static {
+    position: static; /* Default, follows document flow */
+}
+
+/* Relative position */
+.relative {
+    position: relative;
+    top: 20px; /* Offset from normal position */
+    left: 30px;
+}
+.relative-child {
+    position: relative;
+    top: 10px;
+    left: 20px;
+    background-color: #f8d7da;
+    padding: 0.5rem;
+    display: inline-block;
+    border: 1px solid #dc3545;
+}
+
+/* Absolute position */
+.absolute-parent {
+    min-height: 150px; /* Ensure space for absolute child */
+}
+.absolute-child {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #d4edda;
+    padding: 0.5rem;
+    border: 1px solid #28a745;
+}
+
+/* Fixed position */
+.fixed {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 200px;
+    background-color: #fff3cd;
+    border-color: #ffc107;
+    z-index: 1000; /* Ensure it stays on top */
+}
+
+/* Sticky position */
+.sticky-container {
+    min-height: 400px; /* Enable scrolling for sticky effect */
+}
+.sticky {
+    position: sticky;
+    top: 10px;
+    background-color: #e9ecef;
+    padding: 0.5rem;
+    border: 1px solid #6c757d;
+    z-index: 10;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    #main-heading {
+        font-size: 2rem;
+    }
+    .container {
+        padding: 1rem;
+    }
+    .fixed {
+        width: 150px;
+        top: 10px;
+        right: 10px;
+    }
+}

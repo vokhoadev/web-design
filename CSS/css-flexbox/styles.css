@@ -1,0 +1,182 @@
+/* Reset default margins and set base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base body styles */
+body {
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+/* Container styles */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styles */
+#main-header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 1.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+
+.nav-list a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.nav-list a:hover {
+    text-decoration: underline;
+}
+
+/* Section styles */
+section {
+    margin-bottom: 3rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 1rem;
+}
+
+/* Flex container base styles */
+.flex-container {
+    display: flex;
+    background-color: #e9ecef;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+.flex-item {
+    background-color: #d4edda;
+    border: 1px solid #28a745;
+    padding: 1rem;
+    border-radius: 4px;
+    text-align: center;
+}
+
+/* Flex direction: row */
+.row {
+    flex-direction: row;
+}
+
+/* Flex direction: column */
+.column {
+    flex-direction: column;
+}
+
+/* Flex wrap */
+.wrap {
+    flex-wrap: wrap;
+}
+
+.wrap .flex-item {
+    flex: 1 1 200px; /* Grow, shrink, basis */
+}
+
+/* Justify content */
+.justify {
+    justify-content: space-between;
+}
+
+/* Align items */
+.align {
+    align-items: center;
+    min-height: 150px; /* Ensure height for alignment visibility */
+}
+
+.short {
+    height: 50px;
+}
+
+.tall {
+    height: 100px;
+}
+
+.medium {
+    height: 75px;
+}
+
+/* Flex grow, shrink, basis */
+.grow-shrink {
+    min-height: 100px;
+}
+
+.grow {
+    flex-grow: 1;
+}
+
+.no-grow {
+    flex-grow: 0;
+    flex-basis: 150px;
+}
+
+.basis {
+    flex-basis: 200px;
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #343a40;
+    color: #fff;
+    border-radius: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .flex-container {
+        flex-direction: column; /* Stack items vertically */
+    }
+
+    .nav-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-list li {
+        margin: 0.5rem 0;
+    }
+
+    .wrap .flex-item {
+        flex: 1 1 100%; /* Full width on smaller screens */
+    }
+}
+
+@media (max-width: 600px) {
+    #main-header h1 {
+        font-size: 2rem;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+}

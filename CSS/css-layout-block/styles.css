@@ -1,0 +1,129 @@
+/* Reset default margins and set base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base body styles */
+body {
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+/* Container styles */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styles */
+#main-header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 1.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+}
+
+#main-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+/* Section styles */
+section {
+    margin-bottom: 3rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+/* Block display */
+.block-item {
+    display: block;
+    background-color: #e9ecef;
+    padding: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+/* Inline display */
+.inline-section {
+    font-size: 0; /* Remove unwanted whitespace */
+}
+
+.inline-item {
+    display: inline;
+    font-size: 16px; /* Reset font size */
+    background-color: #f8d7da;
+    padding: 0.5rem;
+    border: 1px solid #dc3545;
+    margin-right: 0.5rem;
+}
+
+/* Inline-block display */
+.inline-block-section {
+    font-size: 0; /* Remove unwanted whitespace */
+}
+
+.inline-block-item {
+    display: inline-block;
+    font-size: 16px; /* Reset font size */
+    width: 30%;
+    background-color: #d4edda;
+    padding: 1rem;
+    border: 1px solid #28a745;
+    border-radius: 8px;
+    text-align: center;
+    margin-right: 5%;
+    vertical-align: top;
+}
+
+.inline-block-item:last-child {
+    margin-right: 0;
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #343a40;
+    color: #fff;
+    border-radius: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    #main-header h1 {
+        font-size: 2rem;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+
+    .inline-block-item {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
+}

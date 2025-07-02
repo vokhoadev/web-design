@@ -1,0 +1,89 @@
+/* Reset default margins and set base font */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base styles for the body */
+body {
+    font-family: "Roboto", -apple-system, BlinkMacSystemFont, sans-serif; /* Fallback fonts */
+    font-size: 16px; /* Base font size */
+    line-height: 1.6; /* Unitless for scalability */
+    color: #333;
+    padding: 2rem;
+}
+
+/* Container for centering content */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Heading styles */
+h1 {
+    font-family: "Playfair Display", serif; /* Elegant serif font */
+    font-size: 2.5rem; /* Responsive size */
+    font-weight: 700; /* Bold */
+    line-height: 1.2;
+    text-transform: capitalize;
+    margin-bottom: 1rem;
+    color: #222;
+}
+
+/* Intro paragraph */
+.intro {
+    font-size: 1.125rem; /* Slightly larger */
+    font-weight: 300; /* Light weight */
+    letter-spacing: 0.02em; /* Subtle letter spacing */
+    margin-bottom: 1rem;
+}
+
+/* Italic paragraph */
+.italic {
+    font-style: italic;
+    letter-spacing: 0.05em; /* More pronounced spacing */
+    margin-bottom: 1rem;
+}
+
+/* Bold paragraph */
+.bold {
+    font-family: "Playfair Display", serif;
+    font-weight: 700; /* Bold */
+    word-spacing: 0.1em; /* Space between words */
+    margin-bottom: 1rem;
+}
+
+/* Custom paragraph */
+.custom {
+    font-size: 1rem;
+    line-height: 1.8; /* Taller line height */
+    text-transform: uppercase; /* All caps */
+    text-decoration: underline; /* Underline for emphasis */
+    margin-bottom: 1rem;
+}
+
+/* Shorthand property */
+.shorthand {
+    /* font: [style] [weight] [size]/[line-height] [family] */
+    font: italic 400 1.1rem/1.7 "Roboto", sans-serif;
+    margin-bottom: 1rem;
+}
+
+/* Variable font (if supported) */
+.variable {
+    font-family: "Roboto", sans-serif;
+    font-variation-settings: "wght" 500; /* Variable font weight */
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Responsive font sizing for smaller screens */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+    .intro {
+        font-size: 1rem;
+    }
+}

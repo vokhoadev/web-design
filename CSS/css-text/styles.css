@@ -1,0 +1,90 @@
+/* Reset default margins and set base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base body styles */
+body {
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    padding: 2rem;
+}
+
+/* Container for centering content */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Heading styles */
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #222;
+}
+
+/* Text alignment */
+.align {
+    text-align: center; /* Center text */
+    margin-bottom: 1rem;
+}
+
+/* Text decoration */
+.decoration {
+    text-decoration: underline overline; /* Multiple decorations */
+    text-decoration-color: #007bff; /* Blue decoration */
+    text-decoration-style: wavy; /* Wavy style */
+    margin-bottom: 1rem;
+}
+
+/* Text transformation */
+.transform {
+    text-transform:uppercase; /* All uppercase */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    margin-bottom: 1rem;
+}
+
+/* Letter and word spacing */
+.spacing {
+    letter-spacing: 0.05em; /* Space between characters */
+    word-spacing: 0.1em; /* Space between words */
+    margin-bottom: 1rem;
+}
+
+/* Text indent */
+.indent {
+    text-indent: 2rem; /* Indent first line */
+    margin-bottom: 1rem;
+}
+
+/* White space handling */
+.white-space {
+    white-space: nowrap; /* Prevent line breaks */
+    background-color: #f0f0f0; /* Background for visibility */
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    display: inline-block; /* Contain nowrap text */
+}
+
+/* Text direction */
+.direction {
+    direction: rtl; /* Right-to-left */
+    unicode-bidi: bidi-override; /* Ensure consistent RTL */
+    margin-bottom: 1rem;
+}
+
+/* Responsive text adjustments */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+    .align {
+        text-align: justify; /* Justify text on smaller screens */
+    }
+}

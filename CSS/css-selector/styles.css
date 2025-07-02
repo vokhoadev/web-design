@@ -1,0 +1,145 @@
+```css
+/* Reset default margins and set base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base body styles (element selector) */
+body {
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+    padding: 2rem;
+}
+
+/* Container styles (class selector) */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Main heading (ID selector) */
+#main-heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 1.5rem;
+}
+
+/* Section heading (element selector) */
+h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 1rem;
+}
+
+/* Descendant selector: div span */
+div span {
+    color: blue;
+    display: block;
+    margin: 0.5rem 0;
+}
+
+/* Child selector: div > span */
+div > span {
+    font-weight: 700;
+    border-bottom: 2px solid #007bff;
+}
+
+/* General sibling selector: div ~ span */
+div ~ span {
+    color: green;
+    font-style: italic;
+}
+
+/* Adjacent sibling selector: div + span */
+div + span {
+    background-color: #f8f9fa;
+    padding: 0.5rem;
+}
+
+/* Class selector: .highlight */
+.highlight {
+    background-color: #e9ecef;
+    padding: 0.5rem;
+    border-left: 4px solid #dc3545;
+}
+
+/* ID selector: #unique-card */
+#unique-card {
+    border: 2px solid #28a745;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+}
+
+/* Attribute selector: [data-section="main"] */
+[data-section="main"] {
+    background-color: #f1f8ff;
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+/* Attribute selector: [data-action="submit"] */
+[data-action="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+[data-action="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Navigation list (ID selector) */
+#nav-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Navigation item (class selector) */
+.nav-item {
+    margin: 0 1rem;
+}
+
+/* Navigation link (class selector with pseudo-class) */
+.nav-link {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: 700;
+}
+.nav-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+.nav-link.active {
+    color: #dc3545;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    #main-heading {
+        font-size: 2rem;
+    }
+    .container {
+        padding: 1rem;
+    }
+    .nav-item {
+        margin: 0 0.5rem;
+    }
+}
+```

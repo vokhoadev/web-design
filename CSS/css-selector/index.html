@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Relationship Selectors Demo</title>
+    <!-- Import Google Fonts for typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="main-heading">CSS Relationship Selectors Demo</h1>
+        
+        <!-- Descendant and Child Selectors -->
+        <section class="content" data-section="main">
+            <h2>Descendant and Child Selectors</h2>
+            <div class="parent">
+                <span>Span trực tiếp (con của div)</span>
+                <p><span>Span lồng trong p (hậu duệ của div)</span></p>
+                <span>Span trực tiếp khác</span>
+            </div>
+        </section>
+        
+        <!-- Sibling Selectors -->
+        <section class="siblings">
+            <h2>Sibling Selectors</h2>
+            <span>Span trước div</span>
+            <div class="sibling">Div tham chiếu</div>
+            <span>Span liền kề sau div</span>
+            <span>Span anh em khác sau div</span>
+            <p>Paragraph không bị ảnh hưởng</p>
+        </section>
+        
+        <!-- Class, ID, and Attribute Selectors -->
+        <section class="attributes">
+            <h2>Class, ID, and Attribute Selectors</h2>
+            <div id="unique-card" class="card special" data-type="highlight">
+                <p class="highlight">Paragraph với class highlight</p>
+                <p>Paragraph thông thường</p>
+            </div>
+            <button class="btn" data-action="submit">Submit Button</button>
+        </section>
+        
+        <!-- Navigation List -->
+        <nav>
+            <ul id="nav-list">
+                <li class="nav-item"><a href="#" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>
+```

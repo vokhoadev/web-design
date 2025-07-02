@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Position Demo</title>
+    <!-- Import Google Fonts for typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="main-heading">CSS Position Demo</h1>
+        
+        <!-- Static Position -->
+        <div class="box static">
+            <h2>Static Position</h2>
+            <p>Default positioning, follows normal document flow.</p>
+        </div>
+        
+        <!-- Relative Position -->
+        <div class="box relative">
+            <h2>Relative Position</h2>
+            <p>Positioned relative to its normal position.</p>
+            <span class="relative-child">Relative child offset</span>
+        </div>
+        
+        <!-- Absolute Position -->
+        <div class="box absolute-parent">
+            <h2>Absolute Position</h2>
+            <p>Contains an absolutely positioned child.</p>
+            <span class="absolute-child">Absolute child</span>
+        </div>
+        
+        <!-- Fixed Position -->
+        <div class="box fixed">
+            <h2>Fixed Position</h2>
+            <p>Stays fixed relative to the viewport.</p>
+        </div>
+        
+        <!-- Sticky Position -->
+        <div class="box sticky-container">
+            <h2 class="sticky">Sticky Position</h2>
+            <p>Scroll to see the sticky header in action.</p>
+            <p>More content to enable scrolling...</p>
+            <p>Additional content for scrolling...</p>
+            <p>Keep scrolling...</p>
+            <p>Final content block.</p>
+        </div>
+    </div>
+</body>
+</html>

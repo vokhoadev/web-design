@@ -77,10 +77,14 @@
         const hoverArea = document.getElementById("hoverArea");
         hoverArea.addEventListener("mouseover", function() {
             hoverArea.style.backgroundColor = "#a0e7a0";
+            hoverArea.style.color = "#ff9900";
+
             displayResult("Chuột di vào khu vực!");
         });
         hoverArea.addEventListener("mouseout", function() {
             hoverArea.style.backgroundColor = "#f0f0f0";
+            hoverArea.style.color = "#ffffff";
+
             displayResult("Chuột rời khỏi khu vực!");
         });
 

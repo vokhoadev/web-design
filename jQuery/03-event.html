@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery Demo: Tất cả Sự kiện</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .box {
+            width: 150px;
+            height: 150px;
+            background-color: lightblue;
+            margin: 10px;
+            cursor: pointer;
+            text-align: center;
+            line-height: 150px;
+        }
+        .highlight { background-color: yellow; }
+        #log {
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+        input, select, textarea { margin: 10px 0; padding: 5px; }
+        form { margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <h1>Demo jQuery: Các Sự kiện</h1>
+
+    <!-- Sự kiện chuột -->
+    <h3>Sự kiện chuột</h3>
+    <div class="box" id="mouseBox">Tương tác chuột</div>
+
+    <!-- Sự kiện bàn phím -->
+    <h3>Sự kiện bàn phím</h3>
+    <input type="text" id="keyboardInput" placeholder="Gõ phím vào đây">
+
+    <!-- Sự kiện form -->
+    <h3>Sự kiện form</h3>
+    <form id="myForm">
+        <label for="formInput">Nhập văn bản:</label><br>
+        <input type="text" id="formInput" placeholder="Tập trung hoặc nhập"><br>
+        <label for="formSelect">Chọn tùy chọn:</label><br>
+        <select id="formSelect">
+            <option value="">--Chọn--</option>
+            <option value="option1">Tùy chọn 1</option>
+            <option value="option2">Tùy chọn 2</option>
+        </select><br>
+        <button type="submit">Gửi</button>
+    </form>
+
+    <!-- Log sự kiện -->
+    <h3>Log sự kiện</h3>
+    <div id="log"></div>
+
+    <script>
+        $(document).ready(function() {
+            // Hàm ghi log
+            function logEvent(message) {
+                $("#log").prepend("<p>" + new Date().toLocaleTimeString() + ": " + message + "</p>");
+            }
+
+            // === Sự kiện chuột ===
+            // Click
+            $("#mouseBox").click(function() {
+                logEvent("Click vào box");
+                $(this).toggleClass("highlight");
+            });
+
+            // Dblclick
+            $("#mouseBox").dblclick(function() {
+                logEvent("Double click vào box");
+                $(this).text("Đã double click!");
+            });
+
+            // Mouseenter
+            $("#mouseBox").mouseenter(function() {
+                logEvent("Chuột vào box");
+                $(this).css("background-color", "lightgreen");
+            });
+
+            // Mouseleave
+            $("#mouseBox").mouseleave(function() {
+                logEvent("Chuột rời box");
+                $(this).css("background-color", "lightblue");
+            });
+
+            // Hover (kết hợp mouseenter và mouseleave)
+            $("#mouseBox").hover(
+                function() { logEvent("Hover: Chuột vào"); },
+                function() { logEvent("Hover: Chuột ra"); }
+            );
+
+            // === Sự kiện bàn phím ===
+            // Keypress
+            $("#keyboardInput").keypress(function(e) {
+                logEvent("Keypress: Phím '" + String.fromCharCode(e.which) + "' được nhấn");
+            });
+
+            // Keydown
+            $("#keyboardInput").keydown(function(e) {
+                logEvent("Keydown: Phím (code: " + e.which + ")");
+            });
+
+            // Keyup
+            $("#keyboardInput").keyup(function() {
+                logEvent("Keyup: Phím được thả");
+            });
+
+            // === Sự kiện form ===
+            // Submit
+            $("#myForm").submit(function(e) {
+                e.preventDefault(); // Ngăn gửi form thực sự
+                logEvent("Form được submit");
+            });
+
+            // Change
+            $("#formSelect").change(function() {
+                logEvent("Change: Giá trị select là '" + $(this).val() + "'");
+            });
+
+            // Focus
+            $("#formInput").focus(function() {
+                logEvent("Focus: Ô input được focus");
+                $(this).css("border", "2px solid blue");
+            });
+
+            // Blur
+            $("#formInput").blur(function() {
+                logEvent("Blur: Ô input mất focus");
+                $(this).css("border", "1px solid #ccc");
+            });
+
+            // === Sự kiện window ===
+            // Load
+            $(window).on("load", function() {
+                logEvent("Window: Trang đã tải xong");
+            });
+
+            // Resize
+            $(window).resize(function() {
+                logEvent("Window: Cửa sổ được thay đổi kích thước");
+            });
+
+            // Scroll
+            $(window).scroll(function() {
+                logEvent("Window: Trang được cuộn");
+            });
+
+            // Unload (lưu ý: khó kiểm tra trên một số trình duyệt hiện đại)
+            $(window).on("unload", function() {
+                logEvent("Window: Trang sắp đóng");
+            });
+        });
+    </script>
+</body>
+</html>

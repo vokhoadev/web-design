@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery Xử lý Sự kiện</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        .highlight { background-color: yellow; }
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <h1>Xử lý Sự kiện với jQuery</h1>
+    
+    <!-- Sự kiện Click -->
+    <button id="clickBtn">Nhấn để thay đổi văn bản</button>
+    <p id="clickText">Nội dung ban đầu</p>
+
+    <!-- Sự kiện Hover -->
+    <div class="box" id="hoverBox">Di chuột vào đây</div>
+
+    <!-- Sự kiện Change -->
+    <label for="mySelect">Chọn một tùy chọn:</label>
+    <select id="mySelect">
+        <option value="">--Chọn--</option>
+        <option value="option1">Tùy chọn 1</option>
+        <option value="option2">Tùy chọn 2</option>
+    </select>
+    <p id="selectText">Bạn chưa chọn gì.</p>
+
+    <!-- Sự kiện On (Đa sự kiện) -->
+    <button class="multiEvent">Nhấn hoặc di chuột</button>
+    <p id="multiText">Chưa có hành động</p>
+
+    <script>
+        $(document).ready(function() {
+            // Sự kiện Click
+            $("#clickBtn").click(function() {
+                $("#clickText").text("Bạn vừa nhấn nút!").toggleClass("highlight");
+            });
+
+            // Sự kiện Hover
+            $("#hoverBox").hover(
+                function() {
+                    $(this).css("background-color", "lightgreen").text("Chuột vào!");
+                },
+                function() {
+                    $(this).css("background-color", "lightblue").text("Chuột ra!");
+                }
+            );
+
+            // Sự kiện Change
+            $("#mySelect").change(function() {
+                let selectedValue = $(this).val();
+                $("#selectText").text("Bạn đã chọn: " + (selectedValue || "Không có gì"));
+            });
+
+            // Sự kiện On (Xử lý nhiều sự kiện)
+            $(".multiEvent").on({
+                click: function() {
+                    $("#multiText").text("Bạn vừa nhấn nút!").css("color", "blue");
+                },
+                mouseenter: function() {
+                    $("#multiText").text("Chuột di vào nút!").css("color", "green");
+                },
+                mouseleave: function() {
+                    $("#multiText").text("Chuột rời khỏi nút!").css("color", "black");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

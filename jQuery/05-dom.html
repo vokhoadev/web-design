@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery DOM Manipulation Demo</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background: #3498db;
+            margin: 20px;
+            position: relative;
+            color: white;
+            text-align: center;
+            line-height: 100px;
+        }
+        .highlight {
+            background: yellow !important;
+            color: black !important;
+        }
+        button {
+            margin: 5px;
+            padding: 10px;
+        }
+        #output {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h3>jQuery DOM Manipulation Demo</h3>
+    <div id="container">
+        <div id="box" class="box" data-info="345">Box Content</div>
+        <input type="text" id="inputText" value="Sample Text">
+    </div>
+
+    <button id="getContent">Get HTML/Text</button>
+    <button id="setContent">Set HTML/Text</button>
+    <button id="getValue">Get Input Value</button>
+    <button id="setValue">Set Input Value</button>
+    <button id="getAttr">Get Attribute</button>
+    <button id="setAttr">Set Attribute</button>
+    <button id="removeAttr">Remove Attribute</button>
+    <button id="addClass">Add Class</button>
+    <button id="removeClass">Remove Class</button>
+    <button id="toggleClass">Toggle Class</button>
+    <button id="setCss">Set CSS</button>
+    <button id="append">Append Element</button>
+    <button id="prepend">Prepend Element</button>
+    <button id="remove">Remove Element</button>
+    <button id="find">Find Children</button>
+    <button id="parent">Get Parent</button>
+    <button id="siblings">Get Siblings</button>
+    <button id="hide">Hide</button>
+    <button id="show">Show</button>
+    <button id="slideUp">Slide Up</button>
+    <button id="slideDown">Slide Down</button>
+    <button id="fadeOut">Fade Out</button>
+    <button id="fadeIn">Fade In</button>
+    <button id="fadeTo">Fade To 0.3</button>
+    <button id="animate">Animate</button>
+    <button id="reset">Reset</button>
+
+    <div id="output">Output will appear here</div>
+
+    <script>
+        $(document).ready(function() {
+            // 1. Get HTML/Text
+            $("#getContent").click(function() {
+                let html = $("#box").html();
+                let text = $("#box").text();
+                $("#output").html(`HTML: ${html}<br>Text: ${text}`);
+                // document.getElementById("#output").innerHTML = 'HTML: ${html}<br>Text: ${text}';
+            });
+
+            // 2. Set HTML/Text
+            $("#setContent").click(function() {
+                $("#box").html("<strong>New Content</strong>");
+                $("#output").text("Set new HTML content");
+                // document.getElementById("#output").innerText = 'Set new HTML content';
+
+            });
+
+            // 3. Get Input Value
+            $("#getValue").click(function() {
+                let value = $("#inputText").val();
+                $("#output").text(`Input value: ${value}`);
+            });
+
+            // 4. Set Input Value
+            $("#setValue").click(function() {
+                $("#inputText").val("123");
+                $("#output").text("Input value changed");
+            });
+
+            // 5. Get Attribute
+            $("#getAttr").click(function() {
+                let attr = $("#box").attr("data-info");
+                $("#output").text(`data-info: ${attr}`);
+            });
+
+            // 6. Set Attribute
+            $("#setAttr").click(function() {
+                $("#box").attr("data-info", "678");
+                $("#output").text("Attribute data-info set to new-value");
+            });
+
+            // 7. Remove Attribute
+            $("#removeAttr").click(function() {
+                $("#box").removeAttr("data-info");
+                $("#output").text("Attribute data-info removed");
+            });
+
+            // 8. Add Class
+            $("#addClass").click(function() {
+                $("#box").addClass("highlight");
+                $("#output").text("Added highlight class");
+            });
+
+            // 9. Remove Class
+            $("#removeClass").click(function() {
+                $("#box").removeClass("highlight");
+                $("#output").text("Removed highlight class");
+            });
+
+            // 10. Toggle Class
+            $("#toggleClass").click(function() {
+                $("#box").toggleClass("highlight");
+                $("#output").text("Toggled highlight class");
+            });
+
+            // 11. Set CSS
+            $("#setCss").click(function() {
+                $("#box").css({
+                    "background-color": "green",
+                    "border-radius": "10px"
+                });
+                $("#output").text("CSS properties changed");
+            });
+
+            // 12. Append Element
+            $("#append").click(function() {
+                $("#container").append("<div class='box'>New Box</div>");
+                $("#output").text("Appended new div");
+            });
+
+            // 13. Prepend Element
+            $("#prepend").click(function() {
+                $("#container").prepend("<div class='box'>Prepended Box</div>");
+                $("#output").text("Prepended new div");
+            });
+
+            // 14. Remove Element
+            $("#remove").click(function() {
+                $("#container .box:not(#box)").remove();
+                $("#output").text("Removed additional boxes");
+            });
+
+            // 15. Find Children
+            $("#find").click(function() {
+                let children = $("#container").find(".box").length;
+                $("#output").text(`Found ${children} elements with class 'box'`);
+            });
+
+            // 16. Get Parent
+            $("#parent").click(function() {
+                let parentId = $("#box").parent().attr("id");
+                $("#output").text(`Parent ID: ${parentId}`);
+            });
+
+            // 17. Get Siblings
+            $("#siblings").click(function() {
+                let siblingsCount = $("#box").siblings().length;
+                $("#output").text(`Siblings count: ${siblingsCount}`);
+            });
+
+            // 18. Hide
+            $("#hide").click(function() {
+                $("#box").hide(1000);
+                $("#output").text("Box hidden");
+            });
+
+            // 19. Show
+            $("#show").click(function() {
+                $("#box").show(1000);
+                $("#output").text("Box shown");
+            });
+
+            // 20. Slide Up
+            $("#slideUp").click(function() {
+                $("#box").slideUp(1000);
+                $("#output").text("Box slid up");
+            });
+
+            // 21. Slide Down
+            $("#slideDown").click(function() {
+                $("#box").slideDown(1000);
+                $("#output").text("Box slid down");
+            });
+
+            // 22. Fade Out
+            $("#fadeOut").click(function() {
+                $("#box").fadeOut(1000);
+                $("#output").text("Box faded out");
+            });
+
+            // 23. Fade In
+            $("#fadeIn").click(function() {
+                $("#box").fadeIn(1000);
+                $("#output").text("Box faded in");
+            });
+
+            // 24. Fade To
+            $("#fadeTo").click(function() {
+                $("#box").fadeTo(1000, 0.3);
+                $("#output").text("Box faded to 0.3 opacity");
+            });
+
+            // 25. Animate
+            $("#animate").click(function() {
+                $("#box").animate({
+                    width: "200px",
+                    height: "200px",
+                    opacity: 0.5,
+                    marginLeft: "50px"
+                }, 1000);
+                $("#output").text("Box animated");
+            });
+
+            // 26. Reset
+            $("#reset").click(function() {
+                $("#box").stop().css({
+                    width: "100px",
+                    height: "100px",
+                    opacity: 1,
+                    marginLeft: "20px",
+                    backgroundColor: "#3498db",
+                    borderRadius: "0",
+                    display: "block"
+                }).html("Box Content").removeClass("highlight").attr("data-info", "example");
+                $("#container .box:not(#box)").remove();
+                $("#inputText").val("Sample Text");
+                $("#output").text("Reset to initial state");
+            });
+
+            // 27. Hover Event (Example of Event Handling)
+            $("#box").hover(
+                function() {
+                    $(this).css("cursor", "pointer").text("Hovered!");
+                },
+                function() {
+                    $(this).text("Box Content");
+                }
+            );
+        });
+    </script>
+</body>
+</html>

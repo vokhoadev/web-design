@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery Effects Demo</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background: #3498db;
+            margin: 20px;
+            position: relative;
+        }
+        button {
+            margin: 5px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <button id="hide">Hide</button>
+    <button id="show">Show</button>
+    <button id="slideUp">Slide Up</button>
+    <button id="slideDown">Slide Down</button>
+    <button id="fadeOut">Fade Out</button>
+    <button id="fadeIn">Fade In</button>
+    <button id="fadeTo">Fade To 0.3</button>
+    <button id="animate">Animate</button>
+    <button id="reset">Reset</button>
+    <div id="box"></div>
+
+    <script>
+        $(document).ready(function() {
+            // Hide
+            $("#hide").click(function() {
+                $("#box").hide(100);
+            });
+
+            // Show
+            $("#show").click(function() {
+                $("#box").show(1000);
+            });
+
+            // Slide Up
+            $("#slideUp").click(function() {
+                $("#box").slideUp(1000);
+            });
+
+            // Slide Down
+            $("#slideDown").click(function() {
+                $("#box").slideDown(1000);
+            });
+
+            // Fade Out
+            $("#fadeOut").click(function() {
+                $("#box").fadeOut(1000);
+            });
+
+            // Fade In
+            $("#fadeIn").click(function() {
+                $("#box").fadeIn(1000);
+            });
+
+            // Fade To
+            $("#fadeTo").click(function() {
+                $("#box").fadeTo(1000, 0.3);
+            });
+
+            // Animate
+            $("#animate").click(function() {
+                $("#box").animate({
+                    width: "200px",
+                    height: "200px",
+                    opacity: 0.5,
+                    marginLeft: "50px"
+                }, 1000);
+            });
+
+            // Reset
+            $("#reset").click(function() {
+                $("#box").stop().css({
+                    width: "100px",
+                    height: "100px",
+                    opacity: 1,
+                    marginLeft: "20px",
+                    display: "block"
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>BOM Nâng cao</title>
+    <style>
+        .completed { text-decoration: line-through; color: gray; }
+        li { cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Danh sách công việc (Lưu trữ cục bộ)</h1>
+    <input type="text" id="taskInput" placeholder="Nhập công việc...">
+    <button onclick="addTask()">Thêm</button>
+    <button onclick="clearStorage()">Xóa bộ nhớ</button>
+    <button onclick="goBack()">Quay lại</button>
+    <p>URL hiện tại: <span id="currentURL"></span></p>
+    <ul id="taskList"></ul>
+
+    <script>
+        // Hiển thị URL hiện tại
+        document.getElementById("currentURL").textContent = window.location.href;
+
+        // Tải danh sách công việc từ localStorage khi trang được tải
+        window.onload = function () {
+            const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            tasks.forEach(task => addTaskToDOM(task));
+        };
+
+        // Thêm công việc mới
+        function addTask() {
+            const input = document.getElementById("taskInput");
+            const taskText = input.value.trim();
+            if (!taskText) return;
+
+            const task = { text: taskText, completed: false };
+            addTaskToDOM(task);
+            saveTask(task);
+            input.value = "";
+        }
+
+        // Thêm công việc vào DOM
+        function addTaskToDOM(task) {
+            const li = document.createElement("li");
+            li.textContent = task.text;
+            if (task.completed) li.classList.add("completed");
+            li.innerHTML += ` <button onclick="deleteTask(this)">Xóa</button>`;
+            document.getElementById("taskList").appendChild(li);
+        }
+
+        // Lưu công việc vào localStorage
+        function saveTask(task) {
+            const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            tasks.push(task);
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+        }
+
+        // Xử lý sự kiện click (đánh dấu hoàn thành)
+        document.getElementById("taskList").addEventListener("click", (event) => {
+            if (event.target.tagName === "LI") {
+                event.target.classList.toggle("completed");
+                updateTaskStatus(event.target.textContent.trim());
+            }
+        });
+
+        // Cập nhật trạng thái công việc trong localStorage
+        function updateTaskStatus(taskText) {
+            const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            const task = tasks.find(t => t.text === taskText);
+            if (task) task.completed = !task.completed;
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+        }
+
+        // Xóa công việc
+        function deleteTask(button) {
+            const taskText = button.parentElement.textContent.replace("Xóa", "").trim();
+            const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            const updatedTasks = tasks.filter(t => t.text !== taskText);
+            localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+            button.parentElement.remove();
+        }
+
+        // Xóa toàn bộ localStorage
+        function clearStorage() {
+            localStorage.removeItem("tasks");
+            document.getElementById("taskList").innerHTML = "";
+        }
+
+        // Điều hướng lịch sử
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

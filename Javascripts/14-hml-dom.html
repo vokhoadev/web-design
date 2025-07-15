@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML DOM Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .container {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        .demo-section {
+            margin-bottom: 20px;
+        }
+        .item {
+            background: #f0f0f0;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 3px;
+        }
+        button {
+            padding: 8px 15px;
+            margin: 5px;
+            cursor: pointer;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 3px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        input, select {
+            padding: 8px;
+            margin: 5px;
+        }
+        .highlight {
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HTML DOM Manipulation Demo</h1>
+
+        <!-- Selection Methods -->
+        <div class="demo-section">
+            <h2>Element Selection Methods</h2>
+            <div id="selectionDemo">
+                <p id="id-1">Element with ID: 123</p>
+                <div class="demo-class">Element with class: demo-class</div>
+                <input type="text" name="demoInput" value="Input with name">
+                <span class="demo-class-1">Another element with class: demo-class</span>
+            </div>
+            <button onclick="selectById()">Select by ID</button>
+            <button onclick="selectByTag()">Select by Tag</button>
+            <button onclick="selectByName()">Select by Name</button>
+            <button onclick="selectByClass()">Select by Class</button>
+            <button onclick="selectByCSS()">Select by CSS Selector</button>
+            <p id="selectionResult">Selection result will appear here</p>
+        </div>
+
+        <!-- Content Modification -->
+        <div class="demo-section">
+            <h2>Content Modification</h2>
+            <p id="contentDemo">Original Content</p>
+            <button onclick="changeContent()">Change HTML Content</button>
+        </div>
+
+        <!-- Attribute Modification -->
+        <div class="demo-section">
+            <h2>Attribute Modification</h2>
+            <img id="attrDemo" width="300px" height="200px" src="bird-8788491_1280.jpg" alt="Placeholder">
+            <button onclick="changeAttribute()">Change Attribute</button>
+            <button onclick="setAttributeDemo()">Set Attribute</button>
+        </div>
+
+        <!-- CSS Style Modification -->
+        <div class="demo-section">
+            <h2>CSS Style Modification</h2>
+            <p id="styleDemo">Style me!</p>
+            <button onclick="changeStyle()">Change Style</button>
+        </div>
+
+        <!-- Event Handling -->
+        <div class="demo-section">
+            <h2>Event Handling</h2>
+            <button id="eventDemo">Click me!</button>
+            <p id="eventResult">Event result will appear here</p>
+        </div>
+
+        <!-- Element Creation and Removal -->
+        <div class="demo-section">
+            <h2>Element Creation and Removal</h2>
+            <ul id="itemList">
+                <li class="item">Item 1</li>
+            </ul>
+            <button onclick="createElementDemo()">Create Element</button>
+            <button onclick="removeElementDemo()">Remove Last Element</button>
+            <button onclick="replaceElementDemo()">Replace Last Element</button>
+        </div>
+
+        <!-- Timers -->
+        <div class="demo-section">
+            <h2>Timers</h2>
+            <p id="timerDemo">Timer: Not started</p>
+            <button onclick="startTimeout()">Start Timeout</button>
+            <button onclick="startInterval()">Start Interval</button>
+            <button onclick="clearTimers()">Clear Timers</button>
+        </div>
+    </div>
+
+    <script>
+        // Selection Methods
+        function selectById() {
+            const element = document.getElementById('id-1');
+            console.log('element', element);
+            document.getElementById('selectionResult').innerText = 
+                `Selected by ID: ${element.innerText}`;
+            element.classList.add('highlight');
+            setTimeout(() => element.classList.remove('highlight'), 1000);
+        }
+
+        function selectByTag() {
+            const elements = document.getElementsByTagName('div');
+            document.getElementById('selectionResult').innerText = 
+                `Selected ${elements.length} div elements`;
+            Array.from(elements).forEach(el => {
+                el.classList.add('highlight');
+                setTimeout(() => el.classList.remove('highlight'), 1000);
+            });
+        }
+
+        function selectByName() {
+            const elements = document.getElementsByName('demoInput');
+            document.getElementById('selectionResult').innerText = 
+                `Selected by name: ${elements[0].value}`;
+            elements[0].classList.add('highlight');
+            setTimeout(() => elements[0].classList.remove('highlight'), 1000);
+        }
+
+        function selectByClass() {
+            const elements = document.getElementsByClassName('demo-class');
+            document.getElementById('selectionResult').innerText = 
+                `Selected ${elements.length} elements with class demo-class`;
+            Array.from(elements).forEach(el => {
+                el.classList.add('highlight');
+                setTimeout(() => el.classList.remove('highlight'), 1000);
+            });
+        }
+
+        function selectByCSS() {
+            const elements = document.querySelectorAll('#selectionDemo .demo-class');
+            document.getElementById('selectionResult').innerText = 
+                `Selected ${elements.length} elements with CSS selector`;
+            elements.forEach(el => {
+                el.classList.add('highlight');
+                setTimeout(() => el.classList.remove('highlight'), 1000);
+            });
+        }
+
+        // Content Modification
+        function changeContent() {
+            const element = document.getElementById('contentDemo');
+            element.innerHTML = '<strong>New Content! 123</strong> Updated at ' + 
+                new Date().toLocaleTimeString();
+        }
+
+        // Attribute Modification
+        function changeAttribute() {
+            const element = document.getElementById('attrDemo');
+            element.src = 'blue-tit-7965696_1280.jpg';
+            element.alt = 'New Placeholder';
+            element.width=400;
+        }
+
+        function setAttributeDemo() {
+            const element = document.getElementById('attrDemo');
+            element.setAttribute('src', 'images.jpeg');
+            element.setAttribute('alt', 'Updated Placeholder');
+        }
+
+        // CSS Style Modification
+        function changeStyle() {
+            const element = document.getElementById('styleDemo');
+            element.style.backgroundColor = '#007bff';
+            element.style.color = 'white';
+            element.style.padding = '10px';
+            element.style.borderRadius = '3px';
+        }
+
+        // Event Handling
+        document.getElementById('eventDemo').onclick = function() {
+            const result = document.getElementById('eventResult');
+            result.innerText = 'Button clicked at ' + new Date().toLocaleTimeString();
+        };
+
+        // Element Creation and Removal
+        function createElementDemo() {
+            const ul = document.getElementById('itemList');
+            const li = document.createElement('li');
+            li.className = 'item';
+            const text = document.createTextNode(`Item ${ul.children.length + 1}`);
+            li.appendChild(text);
+            ul.appendChild(li);
+        }
+
+        function removeElementDemo() {
+            const ul = document.getElementById('itemList');
+            if (ul.children.length > 0) {
+                ul.removeChild(ul.lastChild);
+            }
+        }
+
+        function replaceElementDemo() {
+            const ul = document.getElementById('itemList');
+            if (ul.children.length > 0) {
+                const newLi = document.createElement('li');
+                newLi.className = 'item';
+                newLi.appendChild(document.createTextNode('Replaced Item'));
+                ul.replaceChild(newLi, ul.lastChild);
+            }
+        }
+
+        // Timers
+        let intervalId = null;
+        function startTimeout() {
+            document.getElementById('timerDemo').innerText = 'Timer: Waiting...';
+            setTimeout(() => {
+                document.getElementById('timerDemo').innerText = 
+                    'Timer: Timeout completed at ' + new Date().toLocaleTimeString();
+            }, 2000);
+        }
+
+        function startInterval() {
+            if (!intervalId) {
+                let count = 0;
+                intervalId = setInterval(() => {
+                    document.getElementById('timerDemo').innerText = 
+                        `Timer: Interval count ${++count} at ` + 
+                        new Date().toLocaleTimeString();
+                }, 1000);
+            }
+        }
+
+        function clearTimers() {
+            if (intervalId) {
+                clearInterval(intervalId);
+                intervalId = null;
+            }
+            document.getElementById('timerDemo').innerText = 'Timer: Cleared';
+        }
+    </script>
+</body>
+</html>

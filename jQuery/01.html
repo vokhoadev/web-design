@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery Demo</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        .highlight { background-color: yellow; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <h1 id="title">Chào mừng đến với jQuery!</h1>
+    <button id="toggleBtn">Ẩn/Hiện tiêu đề</button>
+    <button id="changeTextBtn">Thay đổi nội dung</button>
+    <button id="addClassBtn">Thêm Class Highlight</button>
+    <p class="content">Đây là một đoạn văn bản mẫu.</p>
+
+    <script>
+        $(document).ready(function() {
+            // Sự kiện click để ẩn/hiện tiêu đề
+            $("#toggleBtn").click(function() {
+                $("#title").slideToggle();
+            });
+
+            // Sự kiện click để thay đổi nội dung
+            $("#changeTextBtn").click(function() {
+                $(".content").text("Nội dung đã được thay đổi!");
+            });
+
+            // Sự kiện click để thêm class
+            $("#addClassBtn").click(function() {
+                $(".content").toggleClass("highlight");
+            });
+        });
+    </script>
+</body>
+</html>

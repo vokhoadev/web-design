@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery DOM Manipulation Examples</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .section {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            background-color: #f8f9fa;
+        }
+        .section h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        .demo-box {
+            border: 2px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background-color: white;
+            min-height: 50px;
+        }
+        .demo-box.highlight {
+            background-color: #fff3cd;
+            border-color: #ffc107;
+        }
+        .demo-box.success {
+            background-color: #d4edda;
+            border-color: #28a745;
+        }
+        .demo-box.danger {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .btn-success { background-color: #27ae60; }
+        .btn-success:hover { background-color: #229954; }
+        .btn-warning { background-color: #f39c12; }
+        .btn-warning:hover { background-color: #e67e22; }
+        .btn-danger { background-color: #e74c3c; }
+        .btn-danger:hover { background-color: #c0392b; }
+        input, textarea {
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin: 5px;
+            width: 200px;
+        }
+        .dimension-box {
+            width: 200px;
+            height: 100px;
+            padding: 20px;
+            margin: 20px;
+            border: 5px solid #3498db;
+            background-color: #ecf0f1;
+            display: inline-block;
+        }
+        .dimension-info {
+            background-color: #e8f5e8;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        .code-example {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        .result {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-left: 4px solid #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 jQuery DOM Manipulation Examples</h1>
+        
+        <!-- Text & HTML Methods -->
+        <div class="section">
+            <h2>📝 Text & HTML Methods</h2>
+            <div class="demo-box" id="textDemo">
+                <strong>Original content</strong> with <em>HTML tags</em>
+            </div>
+            <button onclick="demoText()">text() - Get/Set Text</button>
+            <button onclick="demoHtml()">html() - Get/Set HTML</button>
+            <button onclick="resetTextDemo()">Reset</button>
+            <div class="result" id="textResult"></div>
+        </div>
+
+        <!-- Value Method -->
+        <div class="section">
+            <h2>📋 Value Method</h2>
+            <input type="text" id="valDemo" value="Original value" placeholder="Enter text here">
+            <textarea id="valTextarea" placeholder="Enter text here">Original textarea value</textarea>
+            <select id="valSelect">
+                <option value="option1">Option 1</option>
+                <option value="option2" selected>Option 2</option>
+                <option value="option3">Option 3</option>
+            </select>
+            <br>
+            <button onclick="demoVal()">val() - Get Value</button>
+            <button onclick="setVal()">val() - Set Value</button>
+            <button onclick="resetVal()">Reset</button>
+            <div class="result" id="valResult"></div>
+        </div>
+
+        <!-- Attribute Method -->
+        <div class="section">
+            <h2>🔗 Attribute Method</h2>
+            <img id="attrDemo" src="https://via.placeholder.com/150x100/3498db/ffffff?text=Demo" 
+                 alt="Demo image" title="Hover me!" style="border: 2px solid #ddd;">
+            <br>
+            <button onclick="demoAttr()">attr() - Get Attributes</button>
+            <button onclick="setAttr()">attr() - Set Attributes</button>
+            <button onclick="resetAttr()">Reset</button>
+            <div class="result" id="attrResult"></div>
+        </div>
+
+        <!-- Content Insertion Methods -->
+        <div class="section">
+            <h2>➕ Content Insertion Methods</h2>
+            <div class="demo-box" id="insertDemo">
+                <p>Original content</p>
+            </div>
+            <button onclick="demoAppend()">append() - Add at end</button>
+            <button onclick="demoPrepend()">prepend() - Add at start</button>
+            <button onclick="demoAfter()">after() - Add after element</button>
+            <button onclick="demoBefore()">before() - Add before element</button>
+            <button onclick="resetInsert()">Reset</button>
+        </div>
+
+        <!-- CSS Class Methods -->
+        <div class="section">
+            <h2>🎨 CSS Class Methods</h2>
+            <div class="demo-box" id="classDemo">
+                This box can have different classes applied
+            </div>
+            <button onclick="demoAddClass()">addClass()</button>
+            <button onclick="demoRemoveClass()">removeClass()</button>
+            <button onclick="demoToggleClass()">toggleClass()</button>
+            <button onclick="resetClass()">Reset</button>
+            <div class="result" id="classResult"></div>
+        </div>
+
+        <!-- CSS Method -->
+        <div class="section">
+            <h2>🎨 CSS Method</h2>
+            <div class="demo-box" id="cssDemo">
+                This box can have CSS properties applied
+            </div>
+            <button onclick="demoCss()">css() - Get CSS</button>
+            <button onclick="setCss()">css() - Set CSS</button>
+            <button onclick="resetCss()">Reset</button>
+            <div class="result" id="cssResult"></div>
+        </div>
+
+        <!-- Dimension Methods -->
+        <div class="section">
+            <h2>📏 Dimension Methods</h2>
+            <div class="dimension-box" id="dimensionDemo">
+                Dimension Demo Box
+            </div>
+            <button onclick="demoDimensions()">Show All Dimensions</button>
+            <button onclick="setDimensions()">Set Dimensions</button>
+            <button onclick="resetDimensions()">Reset</button>
+            <div class="dimension-info" id="dimensionResult"></div>
+        </div>
+    </div>
+
+    <script>
+        // Text & HTML Methods
+        function demoText() {
+            const text = $('#textDemo').text();
+            $('#textResult').html(`<strong>text() result:</strong> ${text}`);
+        }
+
+        function demoHtml() {
+            const html = $('#textDemo').html();
+            $('#textResult').html(`<strong>html() result:</strong> ${html}`);
+        }
+
+        function resetTextDemo() {
+            $('#textDemo').html('<strong>Original content</strong> with <em>HTML tags</em>');
+            $('#textResult').empty();
+        }
+
+        // Value Method
+        function demoVal() {
+            const inputVal = $('#valDemo').val();
+            const textareaVal = $('#valTextarea').val();
+            const selectVal = $('#valSelect').val();
+            $('#valResult').html(`
+                <strong>val() results:</strong><br>
+                Input: "${inputVal}"<br>
+                Textarea: "${textareaVal}"<br>
+                Select: "${selectVal}"
+            `);
+        }
+
+        function setVal() {
+            $('#valDemo').val('New input value');
+            $('#valTextarea').val('New textarea value');
+            $('#valSelect').val('option3');
+            $('#valResult').html('<strong>Values set successfully!</strong>');
+        }
+
+        function resetVal() {
+            $('#valDemo').val('Original value');
+            $('#valTextarea').val('Original textarea value');
+            $('#valSelect').val('option2');
+            $('#valResult').empty();
+        }
+
+        // Attribute Method
+        function demoAttr() {
+            const src = $('#attrDemo').attr('src');
+            const alt = $('#attrDemo').attr('alt');
+            const title = $('#attrDemo').attr('title');
+            $('#attrResult').html(`
+                <strong>attr() results:</strong><br>
+                src: "${src}"<br>
+                alt: "${alt}"<br>
+                title: "${title}"
+            `);
+        }
+
+        function setAttr() {
+            $('#attrDemo').attr({
+                'src': 'https://png.pngtree.com/png-clipart/20200401/original/pngtree-modern-flat-design-concept-of-ui-ux-design-with-characters-and-png-image_5332907.jpg',
+                'alt': 'Changed image',
+                'width': '100px',
+                'title': 'Changed title!'
+            });
+            $('#attrResult').html('<strong>Attributes set successfully!</strong>');
+        }
+
+        function resetAttr() {
+            $('#attrDemo').attr({
+                'src': 'https://via.placeholder.com/150x100/3498db/ffffff?text=Demo',
+                'alt': 'Demo image',
+                'title': 'Hover me!'
+            });
+            $('#attrResult').empty();
+        }
+
+        // Content Insertion Methods
+        function demoAppend() {
+            $('#insertDemo').append('<p style="color: green;">← Appended content</p>');
+        }
+
+        function demoPrepend() {
+            $('#insertDemo').prepend('<p style="color: blue;">Prepended content →</p>');
+        }
+
+        function demoAfter() {
+            $('#insertDemo').after('<div class="demo-box" style="background-color: #fff3cd;">← After element</div>');
+        }
+
+        function demoBefore() {
+            $('#insertDemo').before('<div class="demo-box" style="background-color: #d4edda;">Before element →</div>');
+        }
+
+        function resetInsert() {
+            $('#insertDemo').html('<p>Original content</p>');
+            $('#insertDemo').nextAll('.demo-box').remove();
+            $('#insertDemo').prevAll('.demo-box').remove();
+        }
+
+        // CSS Class Methods
+        function demoAddClass() {
+            $('#classDemo').addClass('highlight');
+            $('#classResult').html('<strong>addClass("highlight") applied</strong>');
+        }
+
+        function demoRemoveClass() {
+            $('#classDemo').removeClass('highlight success danger');
+            $('#classResult').html('<strong>All classes removed</strong>');
+        }
+
+        function demoToggleClass() {
+            $('#classDemo').toggleClass('success');
+            const hasClass = $('#classDemo').hasClass('success');
+            $('#classResult').html(`<strong>toggleClass("success") - Has class: ${hasClass}</strong>`);
+        }
+
+        function resetClass() {
+            $('#classDemo').removeClass('highlight success danger');
+            $('#classResult').empty();
+        }
+
+        // CSS Method
+        function demoCss() {
+            const backgroundColor = $('#cssDemo').css('background-color');
+            const color = $('#cssDemo').css('color');
+            const fontSize = $('#cssDemo').css('font-size');
+            $('#cssResult').html(`
+                <strong>css() results:</strong><br>
+                background-color: "${backgroundColor}"<br>
+                color: "${color}"<br>
+                font-size: "${fontSize}"
+            `);
+        }
+
+        function setCss() {
+            $('#cssDemo').css({
+                'background-color': '#e8f5e8',
+                'color': '#2c3e50',
+                'font-size': '18px',
+                'border': '3px solid #27ae60'
+            });
+            $('#cssResult').html('<strong>CSS properties set successfully!</strong>');
+        }
+
+        function resetCss() {
+            $('#cssDemo').css({
+                'background-color': 'white',
+                'color': 'inherit',
+                'font-size': 'inherit',
+                'border': '2px solid #ddd'
+            });
+            $('#cssResult').empty();
+        }
+
+        // Dimension Methods
+        function demoDimensions() {
+            const width = $('#dimensionDemo').width();
+            const height = $('#dimensionDemo').height();
+            const innerWidth = $('#dimensionDemo').innerWidth();
+            const innerHeight = $('#dimensionDemo').innerHeight();
+            const outerWidth = $('#dimensionDemo').outerWidth();
+            const outerHeight = $('#dimensionDemo').outerHeight();
+            const outerWidthWithMargin = $('#dimensionDemo').outerWidth(true);
+            const outerHeightWithMargin = $('#dimensionDemo').outerHeight(true);
+
+            $('#dimensionResult').html(`
+                <h3>📏 Dimension Results:</h3>
+                <p><strong>width():</strong> ${width}px</p>
+                <p><strong>height():</strong> ${height}px</p>
+                <p><strong>innerWidth():</strong> ${innerWidth}px (width + padding)</p>
+                <p><strong>innerHeight():</strong> ${innerHeight}px (height + padding)</p>
+                <p><strong>outerWidth():</strong> ${outerWidth}px (innerWidth + border)</p>
+                <p><strong>outerHeight():</strong> ${outerHeight}px (innerHeight + border)</p>
+                <p><strong>outerWidth(true):</strong> ${outerWidthWithMargin}px (outerWidth + margin)</p>
+                <p><strong>outerHeight(true):</strong> ${outerHeightWithMargin}px (outerHeight + margin)</p>
+            `);
+        }
+
+        function setDimensions() {
+            $('#dimensionDemo').width(300).height(150);
+            $('#dimensionResult').html('<strong>Dimensions set to 300x150px</strong>');
+        }
+
+        function resetDimensions() {
+            $('#dimensionDemo').width(200).height(100);
+            $('#dimensionResult').empty();
+        }
+
+        // Auto-run dimension demo on load
+        $(document).ready(function() {
+            demoDimensions();
+        });
+    </script>
+</body>
+</html>

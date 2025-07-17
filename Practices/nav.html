@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navigation Bar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background: #333;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 1rem;
+        }
+
+        .menu li {
+            margin: 0;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            display: block;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .menu a:hover {
+            color: #ffd700;
+            background: #555;
+        }
+
+        .menu a[aria-current="page"] {
+            background: #555;
+            color: #ffd700;
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .hamburger:hover {
+            background: #555;
+        }
+
+        .hamburger[aria-expanded="true"] {
+            background: #555;
+        }
+
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #333;
+                flex-direction: column;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-in-out;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            }
+
+            .menu.open {
+                max-height: 400px;
+            }
+
+            .menu li {
+                margin: 0;
+                border-bottom: 1px solid #555;
+            }
+
+            .menu li:last-child {
+                border-bottom: none;
+            }
+
+            .menu a {
+                padding: 1rem;
+            }
+        }
+
+        /* Content styles */
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #333;
+        }
+
+        .section h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .section p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Active link indicator */
+        .menu a.active {
+            background: #555;
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="logo">MyWebsite</div>
+            <button class="hamburger" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+            <ul class="menu">
+                <li><a href="#home" aria-current="page">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content">
+        <section id="home" class="section">
+            <h2>🏠 Home</h2>
+            <p>Welcome to our website! This is the home section. The navigation bar above is fully responsive and includes smooth animations.</p>
+            <p>Try resizing your browser window to see the mobile hamburger menu in action.</p>
+        </section>
+
+        <section id="about" class="section">
+            <h2>👥 About</h2>
+            <p>This is the about section. The navigation automatically highlights the current page when you click on different links.</p>
+            <p>The menu uses ARIA attributes for better accessibility and includes smooth transitions.</p>
+        </section>
+
+        <section id="services" class="section">
+            <h2>🛠️ Services</h2>
+            <p>This is the services section. Notice how the navigation updates to show which page you're currently viewing.</p>
+            <p>The mobile menu can be toggled with the hamburger button and includes proper keyboard navigation support.</p>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>📞 Contact</h2>
+            <p>This is the contact section. The navigation bar is sticky and will stay at the top as you scroll through the content.</p>
+            <p>All navigation links include proper ARIA labels and current page indicators for accessibility.</p>
+        </section>
+    </div>
+
+    <script>
+        // Get DOM elements
+        const hamburger = document.querySelector('.hamburger');
+        const menu = document.querySelector('.menu');
+        const navLinks = document.querySelectorAll('.menu a');
+
+        // Toggle mobile menu
+        hamburger.addEventListener('click', () => {
+            menu.classList.toggle('open');
+            const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+            hamburger.setAttribute('aria-expanded', !expanded);
+        });
+
+        // Handle navigation link clicks
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                // Remove current page indicator from all links
+                navLinks.forEach(a => {
+                    a.removeAttribute('aria-current');
+                    a.classList.remove('active');
+                });
+
+                // Add current page indicator to clicked link
+                link.setAttribute('aria-current', 'page');
+                link.classList.add('active');
+
+                // Close mobile menu if open
+                if (menu.classList.contains('open')) {
+                    menu.classList.remove('open');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !menu.contains(e.target)) {
+                menu.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Handle keyboard navigation
+        hamburger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                hamburger.click();
+            }
+        });
+
+        // Update active link based on scroll position
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.menu a');
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                link.removeAttribute('aria-current');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                    link.setAttribute('aria-current', 'page');
+                }
+            });
+        });
+
+        // Initialize active link on page load
+        window.addEventListener('load', () => {
+            const currentSection = window.location.hash || '#home';
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentSection) {
+                    link.classList.add('active');
+                    link.setAttribute('aria-current', 'page');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

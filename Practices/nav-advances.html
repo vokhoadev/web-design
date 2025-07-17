@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Mega Menu</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            background: #fafafa;
+            color: #333;
+            font-weight: 400;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            height: 64px;
+        }
+
+        .logo {
+            color: #1a1a1a;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        /* Main Menu */
+        .menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 0;
+            align-items: center;
+        }
+
+        .menu li {
+            position: relative;
+        }
+
+        .menu a {
+            color: #666;
+            text-decoration: none;
+            padding: 1rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            position: relative;
+            border-radius: 6px;
+        }
+
+        .menu a:hover {
+            color: #1a1a1a;
+            background: #f5f5f5;
+        }
+
+        .menu a.active {
+            color: #1a1a1a;
+            background: #f0f0f0;
+        }
+
+        /* Mega Menu Styles */
+        .mega-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-8px);
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            border-radius: 12px;
+            padding: 2rem;
+            min-width: 600px;
+            border: 1px solid #e5e5e5;
+        }
+
+        .menu li:hover .mega-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .mega-menu-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1500px;
+        }
+
+        .mega-menu-section {
+            padding: 0;
+        }
+
+        .mega-menu-section h3 {
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #999;
+        }
+
+        .mega-menu-links {
+            list-style: none;
+        }
+
+        .mega-menu-links li {
+            margin: 0.5rem 0;
+        }
+
+        .mega-menu-links a {
+            color: #666;
+            text-decoration: none;
+            padding: 0.5rem 0;
+            display: block;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
+        .mega-menu-links a:hover {
+            color: #1a1a1a;
+            transform: translateX(4px);
+        }
+
+        .mega-menu-featured {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e5e5e5;
+        }
+
+        .mega-menu-featured h4 {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .mega-menu-featured p {
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .featured-content {
+            grid-column: span 2;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .featured-content h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .featured-content p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .featured-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .featured-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .image-gallery {
+            grid-column: span 2;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            background: #f8f9fa;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h4 {
+            margin: 0 0 0.25rem 0;
+            font-size: 0.85rem;
+        }
+
+        .gallery-overlay p {
+            margin: 0;
+            font-size: 0.75rem;
+            opacity: 0.9;
+        }
+
+        .mega-menu-section {
+            padding: 0;
+        }
+
+        .mega-menu-section h3 {
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #999;
+        }
+
+        .mega-menu-links {
+            list-style: none;
+        }
+
+        .mega-menu-links li {
+            margin: 0.5rem 0;
+        }
+
+        .mega-menu-links a {
+            color: #666;
+            text-decoration: none;
+            padding: 0.5rem 0;
+            display: block;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
+        .mega-menu-links a:hover {
+            color: #1a1a1a;
+            transform: translateX(4px);
+        }
+
+        .mega-menu-featured {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e5e5e5;
+        }
+
+        .mega-menu-featured h4 {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .mega-menu-featured p {
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.75rem;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .hamburger:hover {
+            background: #f5f5f5;
+            color: #1a1a1a;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                border-bottom: 1px solid #e5e5e5;
+            }
+
+            .menu.open {
+                max-height: 2000px;
+            }
+
+            .menu li {
+                width: 100%;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .menu li:last-child {
+                border-bottom: none;
+            }
+
+            .menu a {
+                padding: 1rem 2rem;
+                justify-content: flex-start;
+            }
+
+            .mega-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                padding: 1rem 2rem;
+                background: #f8f9fa;
+                margin: 0;
+                border-radius: 0;
+                min-width: auto;
+                border: none;
+                border-top: 1px solid #e5e5e5;
+            }
+
+            .mega-menu-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .featured-content {
+                grid-column: span 1;
+                margin-bottom: 1rem;
+            }
+
+            .image-gallery {
+                grid-column: span 1;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            .gallery-item {
+                aspect-ratio: 1;
+            }
+
+            .gallery-overlay {
+                padding: 0.75rem;
+            }
+
+            .gallery-overlay h4 {
+                font-size: 0.8rem;
+            }
+
+            .gallery-overlay p {
+                font-size: 0.7rem;
+            }
+
+            .mega-menu-section h3 {
+                font-size: 0.8rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .mega-menu-links a {
+                padding: 0.5rem 0;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Content Styles */
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section {
+            margin: 4rem 0;
+            padding: 3rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e5e5e5;
+        }
+
+        .section h2 {
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .section p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: #1a1a1a;
+            z-index: 1001;
+            transition: width 0.2s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                Minimal
+            </a>
+            
+            <button class="hamburger" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="menu">
+                <li>
+                    <a href="#home">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#products">
+                        Products
+                    </a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-content">
+                            <div class="mega-menu-section">
+                                <h3>Electronics</h3>
+                                <ul class="mega-menu-links">
+                                    <li><a href="#laptops"><i class="fas fa-laptop"></i>Laptops</a></li>
+                                    <li><a href="#phones"><i class="fas fa-mobile-alt"></i>Smartphones</a></li>
+                                    <li><a href="#tablets"><i class="fas fa-tablet-alt"></i>Tablets</a></li>
+                                    <li><a href="#accessories"><i class="fas fa-headphones"></i>Accessories</a></li>
+                                </ul>
+                            </div>
+                            <div class="mega-menu-section">
+                                <h3>Fashion</h3>
+                                <ul class="mega-menu-links">
+                                    <li><a href="#men"><i class="fas fa-male"></i>Men's Clothing</a></li>
+                                    <li><a href="#women"><i class="fas fa-female"></i>Women's Clothing</a></li>
+                                    <li><a href="#shoes"><i class="fas fa-shoe-prints"></i>Shoes</a></li>
+                                    <li><a href="#accessories"><i class="fas fa-gem"></i>Accessories</a></li>
+                                </ul>
+                            </div>
+                            <div class="featured-content">
+                                <h3>Summer Collection</h3>
+                                <p>Discover our latest summer styles with exclusive discounts up to 50% off. Limited time offer!</p>
+                                <a href="#summer-sale" class="featured-btn">Shop Now</a>
+                            </div>
+                            <div class="image-gallery">
+                                <div class="gallery-item">
+                                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=200&h=200&fit=crop&crop=center" alt="Latest Tech">
+                                    <div class="gallery-overlay">
+                                        <h4>Latest Tech</h4>
+                                        <p>New arrivals</p>
+                                    </div>
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=200&h=200&fit=crop&crop=center" alt="Fashion Trends">
+                                    <div class="gallery-overlay">
+                                        <h4>Fashion Trends</h4>
+                                        <p>Spring collection</p>
+                                    </div>
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=200&h=200&fit=crop&crop=center" alt="Home Decor">
+                                    <div class="gallery-overlay">
+                                        <h4>Home Decor</h4>
+                                        <p>Interior design</p>
+                                    </div>
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200&h=200&fit=crop&crop=center" alt="Accessories">
+                                    <div class="gallery-overlay">
+                                        <h4>Accessories</h4>
+                                        <p>Complete your look</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="#services">
+                        Services
+                    </a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-content">
+                            <div class="mega-menu-section">
+                                <h3>Development</h3>
+                                <ul class="mega-menu-links">
+                                    <li><a href="#frontend"><i class="fas fa-code"></i>Frontend</a></li>
+                                    <li><a href="#backend"><i class="fas fa-server"></i>Backend</a></li>
+                                    <li><a href="#fullstack"><i class="fas fa-layer-group"></i>Full Stack</a></li>
+                                    <li><a href="#api"><i class="fas fa-plug"></i>API</a></li>
+                                </ul>
+                            </div>
+                            <div class="mega-menu-section">
+                                <h3>Mobile</h3>
+                                <ul class="mega-menu-links">
+                                    <li><a href="#ios"><i class="fab fa-apple"></i>iOS</a></li>
+                                    <li><a href="#android"><i class="fab fa-android"></i>Android</a></li>
+                                    <li><a href="#crossplatform"><i class="fas fa-mobile-alt"></i>Cross-Platform</a></li>
+                                    <li><a href="#maintenance"><i class="fas fa-tools"></i>Maintenance</a></li>
+                                </ul>
+                            </div>
+                            <div class="featured-content">
+                                <h3>Free Consultation</h3>
+                                <p>Book a free 30-minute consultation to discuss your project requirements and get a custom quote.</p>
+                                <a href="#consultation" class="featured-btn">Book Now</a>
+                            </div>
+                            <div class="image-gallery">
+                                <div class="gallery-item">
+                                    <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=200&h=200&fit=crop&crop=center" alt="Web Development">
+                                    <div class="gallery-overlay">
+                                        <h4>Web Development</h4>
+                                        <p>Modern solutions</p>
+                                    </div>
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=200&h=200&fit=crop&crop=center" alt="Mobile Apps">
+                                    <div class="gallery-overlay">
+                                        <h4>Mobile Apps</h4>
+                                        <p>Native & cross-platform</p>
+                                    </div>
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=200&h=200&fit=crop&crop=center" alt="UI/UX Design">
+                                    <div class="gallery-overlay">
+                                        <h4>UI/UX Design</h4>
+                                        <p>User-centered design</p>
+                                    </div>
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop&crop=center" alt="Data Analytics">
+                                    <div class="gallery-overlay">
+                                        <h4>Data Analytics</h4>
+                                        <p>Insights & optimization</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="#about">
+                        About
+                    </a>
+                </li>
+                <li>
+                    <a href="#contact">
+                        Contact
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="content">
+        <section id="home" class="section">
+            <h2>Minimal Design</h2>
+            <p>Clean, modern navigation with subtle animations and minimal visual clutter. Focus on content and usability.</p>
+            <p>Hover over menu items to see the clean mega menu dropdowns.</p>
+        </section>
+
+        <section id="products" class="section">
+            <h2>Products</h2>
+            <p>Explore our product categories with a clean, organized interface. Each section is designed for easy navigation.</p>
+        </section>
+
+        <section id="services" class="section">
+            <h2>Services</h2>
+            <p>Professional services delivered with attention to detail and modern design principles.</p>
+        </section>
+
+        <section id="about" class="section">
+            <h2>About</h2>
+            <p>We believe in the power of minimal design to create better user experiences.</p>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Contact</h2>
+            <p>Get in touch to discuss your project requirements and how we can help.</p>
+        </section>
+    </div>
+
+    <script>
+        // Get DOM elements
+        const hamburger = document.querySelector('.hamburger');
+        const menu = document.querySelector('.menu');
+        const navLinks = document.querySelectorAll('.menu a');
+        const scrollIndicator = document.getElementById('scrollIndicator');
+
+        // Toggle mobile menu
+        hamburger.addEventListener('click', () => {
+            menu.classList.toggle('open');
+            const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+            hamburger.setAttribute('aria-expanded', !expanded);
+            
+            // Animate hamburger icon
+            const icon = hamburger.querySelector('i');
+            if (menu.classList.contains('open')) {
+                icon.className = 'fas fa-times';
+            } else {
+                icon.className = 'fas fa-bars';
+            }
+        });
+
+        // Handle navigation link clicks
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                // Remove current page indicator from all links
+                navLinks.forEach(a => {
+                    a.removeAttribute('aria-current');
+                    a.classList.remove('active');
+                });
+
+                // Add current page indicator to clicked link
+                link.setAttribute('aria-current', 'page');
+                link.classList.add('active');
+
+                // Close mobile menu if open
+                if (menu.classList.contains('open')) {
+                    menu.classList.remove('open');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    const icon = hamburger.querySelector('i');
+                    icon.className = 'fas fa-bars';
+                }
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !menu.contains(e.target)) {
+                menu.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+                const icon = hamburger.querySelector('i');
+                icon.className = 'fas fa-bars';
+            }
+        });
+
+        // Handle keyboard navigation
+        hamburger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                hamburger.click();
+            }
+        });
+
+        // Update active link based on scroll position
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.menu a');
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                link.removeAttribute('aria-current');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                    link.setAttribute('aria-current', 'page');
+                }
+            });
+
+            // Update scroll indicator
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.offsetHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollIndicator.style.width = scrollPercent + '%';
+        });
+
+        // Initialize active link on page load
+        window.addEventListener('load', () => {
+            const currentSection = window.location.hash || '#home';
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentSection) {
+                    link.classList.add('active');
+                    link.setAttribute('aria-current', 'page');
+                }
+            });
+        });
+
+        // Add smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
